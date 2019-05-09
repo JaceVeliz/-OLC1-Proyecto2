@@ -194,6 +194,7 @@ namespace _OLC1_Proyecto2_201700343
                         | Funcion
                         | Main
                         | LlamadaF
+                        | VarClase
                         | Continuar
                         | Salir;
             
@@ -300,8 +301,8 @@ namespace _OLC1_Proyecto2_201700343
                     | E + "!" + E
                     | Datos
                     | dClase
-                    | VarClase
-                    | Id+"("+Parametros+")"+";"
+                    | Id + "." + Id + "(" + Parametros + ")"
+                    | Id+"("+Parametros+")"
                     | "(" + E + ")"
                     | "-" + E;
 
@@ -383,7 +384,7 @@ namespace _OLC1_Proyecto2_201700343
             Var2.Rule = "," + Tipo + Parametros2
                         | Empty;
 
-            VarClase.Rule = variable2 + "." + variable2 +"("+Parametros+")";
+            VarClase.Rule = Id + "." + Id +"("+Parametros+")"+";";
             this.Root = Inicio;
 
             RegisterOperators(1, Associativity.Right,"^");
