@@ -36,14 +36,14 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.erroresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.compilarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarComoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.erroresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lexicosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sintacticosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.semanticosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compilarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compilarArchivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -53,6 +53,7 @@
             // 
             // richTextBox1
             // 
+            this.richTextBox1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(32, 50);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(752, 199);
@@ -137,6 +138,24 @@
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
             this.archivoToolStripMenuItem.Text = "Archivo";
             // 
+            // abrirToolStripMenuItem
+            // 
+            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
+            this.abrirToolStripMenuItem.Text = "Abrir";
+            // 
+            // guardarToolStripMenuItem
+            // 
+            this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
+            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
+            this.guardarToolStripMenuItem.Text = "Guardar";
+            // 
+            // guardarComoToolStripMenuItem
+            // 
+            this.guardarComoToolStripMenuItem.Name = "guardarComoToolStripMenuItem";
+            this.guardarComoToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
+            this.guardarComoToolStripMenuItem.Text = "Guardar Como...";
+            // 
             // erroresToolStripMenuItem
             // 
             this.erroresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -148,6 +167,24 @@
             this.erroresToolStripMenuItem.Text = "Errores";
             this.erroresToolStripMenuItem.Click += new System.EventHandler(this.erroresToolStripMenuItem_Click);
             // 
+            // lexicosToolStripMenuItem
+            // 
+            this.lexicosToolStripMenuItem.Name = "lexicosToolStripMenuItem";
+            this.lexicosToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.lexicosToolStripMenuItem.Text = "Lexicos";
+            // 
+            // sintacticosToolStripMenuItem
+            // 
+            this.sintacticosToolStripMenuItem.Name = "sintacticosToolStripMenuItem";
+            this.sintacticosToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.sintacticosToolStripMenuItem.Text = "Sintacticos";
+            // 
+            // semanticosToolStripMenuItem
+            // 
+            this.semanticosToolStripMenuItem.Name = "semanticosToolStripMenuItem";
+            this.semanticosToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.semanticosToolStripMenuItem.Text = "Semanticos";
+            // 
             // compilarToolStripMenuItem
             // 
             this.compilarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -156,46 +193,10 @@
             this.compilarToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.compilarToolStripMenuItem.Text = "Compilar";
             // 
-            // abrirToolStripMenuItem
-            // 
-            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.abrirToolStripMenuItem.Text = "Abrir";
-            // 
-            // guardarToolStripMenuItem
-            // 
-            this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.guardarToolStripMenuItem.Text = "Guardar";
-            // 
-            // guardarComoToolStripMenuItem
-            // 
-            this.guardarComoToolStripMenuItem.Name = "guardarComoToolStripMenuItem";
-            this.guardarComoToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.guardarComoToolStripMenuItem.Text = "Guardar Como...";
-            // 
-            // lexicosToolStripMenuItem
-            // 
-            this.lexicosToolStripMenuItem.Name = "lexicosToolStripMenuItem";
-            this.lexicosToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.lexicosToolStripMenuItem.Text = "Lexicos";
-            // 
-            // sintacticosToolStripMenuItem
-            // 
-            this.sintacticosToolStripMenuItem.Name = "sintacticosToolStripMenuItem";
-            this.sintacticosToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.sintacticosToolStripMenuItem.Text = "Sintacticos";
-            // 
-            // semanticosToolStripMenuItem
-            // 
-            this.semanticosToolStripMenuItem.Name = "semanticosToolStripMenuItem";
-            this.semanticosToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.semanticosToolStripMenuItem.Text = "Semanticos";
-            // 
             // compilarArchivoToolStripMenuItem
             // 
             this.compilarArchivoToolStripMenuItem.Name = "compilarArchivoToolStripMenuItem";
-            this.compilarArchivoToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.compilarArchivoToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
             this.compilarArchivoToolStripMenuItem.Text = "Compilar archivo...";
             this.compilarArchivoToolStripMenuItem.Click += new System.EventHandler(this.compilarArchivoToolStripMenuItem_Click);
             // 

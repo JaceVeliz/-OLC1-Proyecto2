@@ -52,9 +52,10 @@ namespace _OLC1_Proyecto2_201700343
             if (cedro.Root != null)
             {
                 Console.WriteLine(cedro.ParserMessages.Count());
-                for (int i = 0; i < cedro.ParserMessages.Count(); i++)
+                for (int i = 0; i < cedro.ParserMessages.Count; i++)
                 {
-                    Console.WriteLine(cedro.ParserMessages.ElementAt(i).Message + " " + cedro.ParserMessages.ElementAt(i).Location.Line);
+                    Irony.LogMessageList A = cedro.ParserMessages;
+                    Console.WriteLine(A.ElementAt(i).Level.ToString() + "         " + A.ElementAt(i).Message + "       " + A.ElementAt(i).Location.Column + "         " + A.ElementAt(i).Location.Line);
                 }
                 Console.WriteLine("correcto");
             }

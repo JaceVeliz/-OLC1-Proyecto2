@@ -24,9 +24,9 @@ namespace _OLC1_Proyecto2_201700343
             RegexBasedTerminal taleatorio = new RegexBasedTerminal("taleatorio", "[A-Z|a-z]([a-z|A-Z]|[0-9]|[_])*");
             RegexBasedTerminal tnumerocolor = new RegexBasedTerminal("tnumerocolor", "[#]([a-z|A-Z]|[0-9])+");
             RegexBasedTerminal decimales = new RegexBasedTerminal("decimales", "[0-9]+[.][0-9]+");
-            
+            IdentifierTerminal variable = new IdentifierTerminal("variable");
             var variable2 = new IdentifierTerminal("variable");
-
+            
             var tclase = "clase";
             var toverride = "override";
             var tllavea = ("{");
@@ -214,7 +214,7 @@ namespace _OLC1_Proyecto2_201700343
                         | ToTerm("string")
                         | ToTerm("double")
                         | ToTerm("char")
-                        | Id
+                        | variable2
                         | ToTerm("void");
 
             Visibilidad.Rule = Empty
@@ -301,7 +301,7 @@ namespace _OLC1_Proyecto2_201700343
                     | Datos
                     | dClase
                     | VarClase
-                    | LlamadaF
+                    | Id+"("+Parametros+")"+";"
                     | "(" + E + ")"
                     | "-" + E;
 
@@ -311,7 +311,7 @@ namespace _OLC1_Proyecto2_201700343
             Funcion2.Rule = Tipo + Override
                             | ToTerm("array") + Tipo + Dimension + Override;
 
-            Metodo.Rule = Visibilidad + Id + tvoid + "(" + Parametros + ")" + "{" + Inicio2 + "}";
+            Metodo.Rule = Visibilidad + Id + tvoid + Override + "(" + Parametros + ")" + "{" + Inicio2 + "}";
             Metodo.ErrorRule = SyntaxError + "}";
 
             Extends.Rule = ToTerm("importar") + Id + Extends2
@@ -328,7 +328,7 @@ namespace _OLC1_Proyecto2_201700343
             Main.Rule = ToTerm("main") + "(" + ")" + "{" + Inicio2 + "}";
             Main.ErrorRule = SyntaxError + "}";
 
-            LlamadaF.Rule = Id + "(" + Parametros + ")" + ";";
+            LlamadaF.Rule = Id + "(" + Parametros + ")" +";";
             LlamadaF.ErrorRule = SyntaxError + ";";
 
             While.Rule = ToTerm("while") + "(" + E + ")" + "{" + Inicio2 + "}";
@@ -370,7 +370,7 @@ namespace _OLC1_Proyecto2_201700343
 
             Salir.Rule = tsalir;
 
-            Override.Rule = toverride
+            Override.Rule = ToTerm("override")
                             |Empty;
             dClase.Rule = tnew + Id + "(" + Parametros + ")";
 
@@ -383,7 +383,7 @@ namespace _OLC1_Proyecto2_201700343
             Var2.Rule = "," + Tipo + Parametros2
                         | Empty;
 
-            VarClase.Rule = Id + "." + LlamadaF;
+            VarClase.Rule = variable2 + "." + variable2 +"("+Parametros+")";
             this.Root = Inicio;
 
             RegisterOperators(1, Associativity.Right,"^");
