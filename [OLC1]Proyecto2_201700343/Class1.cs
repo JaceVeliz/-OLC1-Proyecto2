@@ -25,7 +25,7 @@ namespace _OLC1_Proyecto2_201700343
             RegexBasedTerminal tnumerocolor = new RegexBasedTerminal("tnumerocolor", "[#]([a-z|A-Z]|[0-9])+");
             RegexBasedTerminal decimales = new RegexBasedTerminal("decimales", "[0-9]+[.][0-9]+");
             IdentifierTerminal variable = new IdentifierTerminal("variable");
-            var variable2 = new IdentifierTerminal("variable");
+            IdentifierTerminal variable2 = new IdentifierTerminal("variable");
             
             var tclase = "clase";
             var toverride = "override";
@@ -202,7 +202,7 @@ namespace _OLC1_Proyecto2_201700343
                         | Continuar
                         | Salir;
             
-            Asignacion.Rule = Id  + Asignacion2 + ";";
+            Asignacion.Rule = Visibilidad + variable  + Asignacion2 + ";";
             Asignacion.ErrorRule = SyntaxError + ";";
 
             Asignacion2.Rule = "=" + E;
@@ -219,8 +219,9 @@ namespace _OLC1_Proyecto2_201700343
                         | ToTerm("string")
                         | ToTerm("double")
                         | ToTerm("char")
-                        | variable2
-                        | ToTerm("void");
+                        | ToTerm("void")
+                        | variable;
+
             Tipo2.Rule= ToTerm("int")
                         | ToTerm("bool")
                         | ToTerm("string")
@@ -316,13 +317,13 @@ namespace _OLC1_Proyecto2_201700343
                     | "(" + E + ")"
                     | "-" + E;
 
-            Funcion.Rule = Visibilidad + variable2 + Funcion2 + "(" + Parametros + ")" + "{" + Inicio2 + treturn + E + ";" + "}";
+            Funcion.Rule = Visibilidad + variable + Funcion2 + "(" + Parametros + ")" + "{" + Inicio2 + treturn + E + ";" + "}";
             Funcion.ErrorRule = SyntaxError + "}";
 
             Funcion2.Rule = Tipo2 + Override
                             | ToTerm("array") + Tipo2 + Dimension + Override;
 
-            Metodo.Rule = Visibilidad + variable2 + ToTerm("void") + Override + "(" + Parametros + ")" + "{" + Inicio2 + "}";
+            Metodo.Rule = Visibilidad + variable + ToTerm("void") + Override + "(" + Parametros + ")" + "{" + Inicio2 + "}";
             Metodo.ErrorRule = SyntaxError + "}";
 
             Extends.Rule = ToTerm("importar") + Id + Extends2
@@ -339,7 +340,7 @@ namespace _OLC1_Proyecto2_201700343
             Main.Rule = ToTerm("main") + "(" + ")" + "{" + Inicio2 + "}";
             Main.ErrorRule = SyntaxError + "}";
 
-            LlamadaF.Rule = Id + "(" + ParametrosV + ")" +";";
+            LlamadaF.Rule = Visibilidad + variable + "(" + ParametrosV + ")" +";";
             LlamadaF.ErrorRule = SyntaxError + ";";
 
             While.Rule = ToTerm("while") + "(" + E + ")" + "{" + Inicio2 + "}";
@@ -394,7 +395,7 @@ namespace _OLC1_Proyecto2_201700343
             Var2.Rule = "," + Tipo + Parametros2
                         | Empty;
 
-            VarClase.Rule = Id + "." + Id +"("+ParametrosV+")"+";";
+            VarClase.Rule = Visibilidad + variable + "." + Id +"("+ParametrosV+")"+";";
 
             ParametrosV.Rule = E + ParametrosV2
                               | Empty ;
