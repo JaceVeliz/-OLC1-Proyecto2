@@ -160,7 +160,11 @@ namespace _OLC1_Proyecto2_201700343
                         dClase = new NonTerminal("dClase"),
                         Parametros2 = new NonTerminal("Parametros2"),
                         Var2 = new NonTerminal("Var2"),
-                        VarClase = new NonTerminal("VarClase");
+                        VarClase = new NonTerminal("VarClase"),
+                        Tipo2 = new NonTerminal("Tipo2"),
+                        ParametrosV = new NonTerminal("ParametrosV"),
+                        ParametrosV2 = new NonTerminal("ParametrosV2"),
+                        LlamadasRecursivas = new NonTerminal("LlamadasRecursivas") ; 
 
 
             //Comienzo del analizador sintactico 
@@ -216,6 +220,12 @@ namespace _OLC1_Proyecto2_201700343
                         | ToTerm("double")
                         | ToTerm("char")
                         | variable2
+                        | ToTerm("void");
+            Tipo2.Rule= ToTerm("int")
+                        | ToTerm("bool")
+                        | ToTerm("string")
+                        | ToTerm("double")
+                        | ToTerm("char")
                         | ToTerm("void");
 
             Visibilidad.Rule = Empty
@@ -301,18 +311,18 @@ namespace _OLC1_Proyecto2_201700343
                     | E + "!" + E
                     | Datos
                     | dClase
-                    | Id + "." + Id + "(" + Parametros + ")"
-                    | Id+"("+Parametros+")"
+                    | Id + "." + Id + LlamadasRecursivas
+                    | Id+"("+ParametrosV+")"
                     | "(" + E + ")"
                     | "-" + E;
 
-            Funcion.Rule = Visibilidad + Id + Funcion2 + "(" + Parametros + ")" + "{" + Inicio2 + treturn + E + ";" + "}";
+            Funcion.Rule = Visibilidad + variable2 + Funcion2 + "(" + Parametros + ")" + "{" + Inicio2 + treturn + E + ";" + "}";
             Funcion.ErrorRule = SyntaxError + "}";
 
-            Funcion2.Rule = Tipo + Override
-                            | ToTerm("array") + Tipo + Dimension + Override;
+            Funcion2.Rule = Tipo2 + Override
+                            | ToTerm("array") + Tipo2 + Dimension + Override;
 
-            Metodo.Rule = Visibilidad + Id + tvoid + Override + "(" + Parametros + ")" + "{" + Inicio2 + "}";
+            Metodo.Rule = Visibilidad + variable2 + ToTerm("void") + Override + "(" + Parametros + ")" + "{" + Inicio2 + "}";
             Metodo.ErrorRule = SyntaxError + "}";
 
             Extends.Rule = ToTerm("importar") + Id + Extends2
@@ -329,7 +339,7 @@ namespace _OLC1_Proyecto2_201700343
             Main.Rule = ToTerm("main") + "(" + ")" + "{" + Inicio2 + "}";
             Main.ErrorRule = SyntaxError + "}";
 
-            LlamadaF.Rule = Id + "(" + Parametros + ")" +";";
+            LlamadaF.Rule = Id + "(" + ParametrosV + ")" +";";
             LlamadaF.ErrorRule = SyntaxError + ";";
 
             While.Rule = ToTerm("while") + "(" + E + ")" + "{" + Inicio2 + "}";
@@ -373,7 +383,7 @@ namespace _OLC1_Proyecto2_201700343
 
             Override.Rule = ToTerm("override")
                             |Empty;
-            dClase.Rule = tnew + Id + "(" + Parametros + ")";
+            dClase.Rule = tnew + Id + "(" + ParametrosV + ")";
 
             Parametros.Rule = Tipo + Parametros2
                                 |Empty;
@@ -384,7 +394,16 @@ namespace _OLC1_Proyecto2_201700343
             Var2.Rule = "," + Tipo + Parametros2
                         | Empty;
 
-            VarClase.Rule = Id + "." + Id +"("+Parametros+")"+";";
+            VarClase.Rule = Id + "." + Id +"("+ParametrosV+")"+";";
+
+            ParametrosV.Rule = E + ParametrosV2
+                              | Empty ;
+            ParametrosV2.Rule = "," + E + ParametrosV2
+                              | Empty;
+
+            LlamadasRecursivas.Rule = "(" + ParametrosV + ")"
+                                     | "." + Id + LlamadasRecursivas
+                                     | Empty;
             this.Root = Inicio;
 
             RegisterOperators(1, Associativity.Right,"^");
